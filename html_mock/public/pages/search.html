@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>銘柄検索</title>
+  <!-- Bootstrap core CSS -->
+  <link href="./../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!--jQuery-->
+  <script src="./../../bower_components/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+<header>
+  <h1>銘柄検索</h1>
+  <nav>
+    <ul id="navigation">
+      <li><a href="./search.html">銘柄検索</a></li>
+      <li><a href="">お気に入り</a></li>
+      <li><a href="">ログアウト</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section id="search-conditions">
+    <form class="n-search-condition">
+    <ul>
+      <li>
+        <p>市場</p>
+        <select>
+          <option>東証１部</option>
+          <option>東証２部</option>
+        </select>
+      </li>
+      <li>
+        <p>コード</p><input type="text" size="10" />
+      </li>
+      <li>
+        <p>銘柄名</p><input type="text" size="30" />
+      </li>
+    </ul>
+    <button id="stock-search" class="btn">検索</button>
+    </form>
+  </section>
+
+  <section id="search-results">
+    <table>
+      <thead>
+      <tr>
+        <td>市場</td>
+        <td>証券コード</td>
+        <td>銘柄名</td>
+        <td>現在値</td>
+        <td>５日前値(本日比)</td>
+        <td>１０日前値(本日比)</td>
+        <td>２０日前値(本日比)</td>
+        <td>３０日前値(本日比)</td>
+        <td>４０日前値(本日比)</td>
+        <td>５０日前値(本日比)</td>
+        <td>６０日前値(本日比)</td>
+        <td>７０日前値(本日比)</td>
+        <td>８０日前値(本日比)</td>
+        <td>９０日前値(本日比)</td>
+        <td>１００日前値(本日比)</td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>東証一部</td>
+        <td>6701</td>
+        <td>ダミー株式会社</td>
+        <td>100</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+      </tr>
+      <tr>
+        <td>東証一部</td>
+        <td>6702</td>
+        <td>ダミー株式会社</td>
+        <td>100</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+      </tr>
+      <tr>
+        <td>東証一部</td>
+        <td>6703</td>
+        <td>ダミー株式会社</td>
+        <td>100</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+      </tr>
+      <tr>
+        <td>東証一部</td>
+        <td>6704</td>
+        <td>ダミー株式会社</td>
+        <td>100</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+        <td>105(+5.0%)</td>
+      </tr>
+      </tbody>
+    </table>
+
+  </section>
+</main>
+<footer>
+  <!--CSS Files-->
+  <link href="./../assets/css/common/application.css" rel="stylesheet">
+  <link href="./../assets/css/pages/search.css" rel="stylesheet">
+</footer>
+</body>
+</html>
