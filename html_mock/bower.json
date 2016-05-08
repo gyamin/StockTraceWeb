@@ -1,0 +1,23 @@
+{
+  "name": "html_mock",
+  "homepage": "https://github.com/gyamin/stockTraceWeb",
+  "authors": [
+    "Y.Nogami"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.3",
+    "bootstrap": "^3.3.6",
+    "reset-css": "^2.0.2011012603"
+  }
+}
