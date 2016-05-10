@@ -10,6 +10,7 @@
 </head>
 <body>
 <header>
+  <section>
   <h1>銘柄検索</h1>
   <nav>
     <ul id="navigation">
@@ -18,28 +19,36 @@
       <li><a href="">ログアウト</a></li>
     </ul>
   </nav>
+  </section>
 </header>
 
 <main>
   <section id="search-conditions">
     <form class="n-search-condition">
-    <ul>
-      <li>
-        <p>市場</p>
-        <select>
-          <option>東証１部</option>
-          <option>東証２部</option>
-        </select>
-      </li>
-      <li>
-        <p>コード</p><input type="text" size="10" />
-      </li>
-      <li>
-        <p>銘柄名</p><input type="text" size="30" />
-      </li>
-    </ul>
-    <button id="stock-search" class="btn">検索</button>
+      <section>
+        <ul>
+          <li>
+            <p>市場</p>
+            <select class="form-control">
+              <option>東証１部</option>
+              <option>東証２部</option>
+            </select>
+          </li>
+          <li>
+            <p>コード</p><input type="text" size="10" class="form-control"/>
+          </li>
+          <li>
+            <p>銘柄名</p><input type="text" size="30" class="form-control"/>
+          </li>
+          <li>
+            <button class="btn btn-primary">検索</button>
+          </li>
+        </ul>
+      </section>
     </form>
+    <section class="hide-ctrl">
+      <button class="glyphicon glyphicon-chevron-up"></button>
+    </section>
   </section>
 
   <section id="search-results">
@@ -50,17 +59,17 @@
         <td>証券コード</td>
         <td>銘柄名</td>
         <td>現在値</td>
-        <td>５日前値(本日比)</td>
-        <td>１０日前値(本日比)</td>
-        <td>２０日前値(本日比)</td>
-        <td>３０日前値(本日比)</td>
-        <td>４０日前値(本日比)</td>
-        <td>５０日前値(本日比)</td>
-        <td>６０日前値(本日比)</td>
-        <td>７０日前値(本日比)</td>
-        <td>８０日前値(本日比)</td>
-        <td>９０日前値(本日比)</td>
-        <td>１００日前値(本日比)</td>
+        <td>５日前値</td>
+        <td>１０日前値</td>
+        <td>２０日前値</td>
+        <td>３０日前値</td>
+        <td>４０日前値</td>
+        <td>５０日前値</td>
+        <td>６０日前値</td>
+        <td>７０日前値</td>
+        <td>８０日前値</td>
+        <td>９０日前値</td>
+        <td>１００日前値</td>
       </tr>
       </thead>
       <tbody>
@@ -134,7 +143,6 @@
       </tr>
       </tbody>
     </table>
-
   </section>
 </main>
 <footer>

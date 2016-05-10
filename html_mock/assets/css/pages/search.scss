@@ -1,7 +1,87 @@
-#search-conditions {
+@import "./../common/_baseConfig.scss";
 
+/* 検索条件指定 */
+#search-conditions {
+  margin: 0 auto 20px auto;
+  .n-search-condition {
+    width: 950px;
+    margin: 0 auto;
+    @include searchConditionRadius;
+    background-color: #d3d3d3;
+    //border: solid 1px black;
+    ul {
+      padding: 10px 10px;
+      display: inline-block;
+      li {
+        display: inline-block;
+        margin: 5px 10px;
+        p {
+          margin-bottom: 3px;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+  section.hide-ctrl {
+    button.glyphicon-chevron-up {
+      margin: 0 auto;
+      display: block;
+      width: 150px;
+    }
+  }
 }
 
+/* 検索結果表示 */
 #search-results {
   overflow: scroll;
+  table {
+    table-layout: auto;
+    thead {
+      tr {
+        white-space: nowrap;
+        text-align: center;
+        height: 30px;
+        line-height: 30px;
+      }
+      td {
+        padding: 0 5px;
+      }
+      td, th {
+        border: 0.5px black solid;
+      }
+    }
+    tbody {
+      tr {
+        height: 40px;
+        td {
+          display: table-cell;
+          vertical-align: middle;
+          padding: 0 5px;
+
+          // 市場
+          &:nth-child(1){
+            white-space: nowrap;
+          }
+          // 証券コード
+          &:nth-child(2){
+            white-space: nowrap;
+            text-align: center;
+          }
+          // 銘柄名
+          &:nth-child(3){
+            min-width: 200px;
+          }
+          // 株価(現在地〜100日前値)
+          @for $i from 4 through 13 {
+            &:nth-child(#{$i}) {
+              text-align: right;
+            }
+          }
+        }
+      }
+      td, th {
+        border: 0.5px black solid;
+      }
+    }
+  }
 }

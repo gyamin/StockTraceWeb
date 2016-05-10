@@ -1,6 +1,9 @@
-$navBackgroundColor: #666c67;
+$navBackgroundColor: #406db5;
 @mixin navBorderRadius {
-  border-top-left-radius: 3px 3px;
-  border-top-right-radius: 20px 16px;
-  border-bottom-left-radius: 20px 16px;
+  border-top-left-radius: 5px 5px;
+  border-top-right-radius: 5px 5px;
+  border-bottom-left-radius: 5px 5px;
+}
+@mixin searchConditionRadius {
+  border-radius: 10px 10px;
 }
