@@ -8,7 +8,10 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="usersDao" class="gyamin.sample1.dao.UsersDaoImpl">
+    <bean id="stockPricesDao" class="com.gyamin.stocktrace.dao.StockPricesDao">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
         <property name="dataSource" ref="dataSource" />
     </bean>
 

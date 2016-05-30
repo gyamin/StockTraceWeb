@@ -1,28 +1,26 @@
-package com.gyamin.stock_trace.dao;
+package com.gyamin.stocktrace.dao;
 
+import com.gyamin.stocktrace.bean.StockFluctuationInPeriodBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import javax.sql.DataSource;
 import java.lang.StringBuffer;
-import com.gyamin.stock_trace.bean.StockFluctuationInPeriodBean;
 
 @Repository
-class StockPticesDao {
+public class StockPricesDao {
 
-    @Autowired
     private JdbcTemplate jdbcTemplate;
 
     /**
      *
      * @param dataSource
      */
+    @Autowired
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }

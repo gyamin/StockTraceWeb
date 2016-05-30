@@ -1,4 +1,4 @@
-package com.gyamin.stock_trace.bean;
+package com.gyamin.stocktrace.bean;
 
 import java.util.Date;
 
