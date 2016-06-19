@@ -17,6 +17,7 @@
         <property name="suffix" value=".jsp" />
     </bean>
 
+    <!-- @Autowired を利用して依存関係を注入できるよう、component-scanでパッケージを指定-->
     <context:component-scan base-package="com.gyamin.stocktrace.controller" />
     <context:component-scan base-package="com.gyamin.stocktrace.searvice" />
 

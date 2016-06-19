@@ -17,7 +17,6 @@ public class StockPricesDao {
     private JdbcTemplate jdbcTemplate;
 
     /**
-     *
      * @param dataSource
      */
     @Autowired
@@ -26,8 +25,8 @@ public class StockPricesDao {
     }
 
     /**
-     *
-     * @return
+     * 株価データ全件取得
+     * @return 株価データ検索結果配列
      */
     public List<StockFluctuationInPeriodBean> selectAll() {
         try {
@@ -43,7 +42,7 @@ public class StockPricesDao {
             sql.append(" ON issues.issue_code = stock_prices.issue_code ");
 
             List<StockFluctuationInPeriodBean> stocks =
-                    this.jdbcTemplate.query(sql.toString(), new BeanPropertyRowMapper<StockFluctuationInPeriodBean>(StockFluctuationInPeriodBean.class));
+                this.jdbcTemplate.query(sql.toString(), new BeanPropertyRowMapper<StockFluctuationInPeriodBean>(StockFluctuationInPeriodBean.class));
             return stocks;
         }catch(DataAccessException e) {
             throw e;

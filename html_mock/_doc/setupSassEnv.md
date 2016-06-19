@@ -18,7 +18,6 @@
     $ bower install bootstrap --save
     ```
 
-
     3. パッケージの利用
     bowerコマンドでインストールしたパッケージは、bower_components/パッケージ名で保存される。     
     以下のようにhtmlからインポートして利用できる。
@@ -42,8 +41,8 @@
     </html>
     ```
 
-2. sassのコンパイル
-sassファイルのコンパイルに今回はrubyを利用する。rbenv環境は事前に準備できているものとして、sassコンパイル環境をセットアップする。
+2. sassのコンパイル(ruby gem利用)
+sassファイルのコンパイルにruby gemを利用する場合の方法を記載する。rbenv環境は事前に準備できているものとして、sassコンパイル環境をセットアップする。
 
     1. rbenv, gemsetの準備
     ```
@@ -65,11 +64,12 @@ sassファイルのコンパイルに今回はrubyを利用する。rbenv環境�
     ```
     
     3. scssのコンパイル
-    ファイル単位でコンパイルする
+    + ファイル単位でコンパイルする
         ```
         $ sass assets/css/pages/search.scss public/assets/css/pages/search.scss
         ```
-    ディレクトリでソースと出力先を指定してコンパイルする
+
+    + ディレクトリでソースと出力先を指定してコンパイルする
         --watch `sass --watch input:output`
         --watchを利用することで、ソースファイルの変更を監視し、変更すると自動的にコンパイルが行われる。
         ```

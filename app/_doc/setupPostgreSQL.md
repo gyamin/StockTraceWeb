@@ -4,6 +4,7 @@
 PostgreSQLをCentOS7にインストールする。
 
 ### インストール
+
 + PostgreSQLリポジトリの追加
 ```
 # rpm -ivh https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-7-x86_64/pgdg-centos94-9.4-2.noarch.rpm
@@ -20,6 +21,7 @@ PostgreSQLをCentOS7にインストールする。
 # su - postgres
 $ /usr/pgsql-9.4/bin/initdb 
 ```
+
 + データベースの起動/停止
 ```
 $ /usr/pgsql-9.4/bin/pg_ctl -D /var/lib/pgsql/9.4/data -l logfile start

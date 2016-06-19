@@ -52,4 +52,3 @@ mavenで管理するライブラリは、以下のようにdependenciesに追加
 ```
 
 
-http://www.concretepage.com/spring/jdbc-template-spring-jdbc-integration-example
