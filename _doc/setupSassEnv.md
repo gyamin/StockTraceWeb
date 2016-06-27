@@ -53,7 +53,7 @@ sassファイルのコンパイル、jsファイルの難読化などのにGulp�
 
     2. bower.jsonの作成
     ```
-    $ cd ./stockTraceWeb/app/src/main/webapp/resources
+    $ cd ./stockTraceWeb/app/src/main/webapp/resorces
     $ bower init
     ```
 
@@ -76,22 +76,11 @@ sassファイルのコンパイル、jsファイルの難読化などのにGulp�
     3. パッケージの利用
     bowerコマンドでインストールしたパッケージは、bower_components/パッケージ名で保存される。
     以下のようにhtmlからインポートして利用できる。
-    ```html
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <title>Title</title>
-      <!-- Bootstrap core CSS -->
-      <link href="./../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-      <!--jQuery-->
-      <script src="./../../bower_components/jquery/dist/jquery.min.js"></script>
-    </head>
-    <body>
-      <a class="btn btn-default" href="#" role="button">Link</a>
-      <button class="btn btn-default" type="submit">Button</button>
-      <input class="btn btn-default" type="button" value="Input">
-      <input class="btn btn-default" type="submit" value="Submit">
-    </body>
-    </html>
+    ```scss
+    @import "./../bower_components/reset-css/_reset";
+    @import "./../bower_components/bootstrap/dist/css/bootstrap.min.css";
+    ```
+
+    ```javascript
+    <script src="<c:url value="/resources/bower_components/jquery/dist/jquery.min.js" />"></script>
     ```
