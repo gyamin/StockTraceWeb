@@ -16,6 +16,7 @@ sassファイルのコンパイル、jsファイルの難読化などのにGulp�
     # globalにインストール
     $ npm install --global gulp-cli
     # プロジェクトディレクトリにインストール
+    $ npm init
     $ npm install --save-dev gulp
     ```
 
@@ -83,4 +84,10 @@ sassファイルのコンパイル、jsファイルの難読化などのにGulp�
 
     ```javascript
     <script src="<c:url value="/resources/bower_components/jquery/dist/jquery.min.js" />"></script>
+    ```
+
+3. babelの利用
+    1. gulp-babelのインストール
+    ```
+    $ npm install --save-dev gulp-babel babel-preset-es2015
     ```

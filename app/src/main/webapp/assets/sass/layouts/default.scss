@@ -3,12 +3,18 @@
 
 header {
   .st-navigation {
+      margin: 10px 10px;
+      span.glyphicon-menu-hamburger {
+        font-size: 2em;
+      }
+
     li {
+      margin: 5px 10px 5px 10px;
       height: 30px;
-      width: 100px;
+      width: 150px;
       text-align: center;
       font-size: 18px;
-      background-color: #2a189a;
+      border-bottom: solid 1px;
     }
   }
 }

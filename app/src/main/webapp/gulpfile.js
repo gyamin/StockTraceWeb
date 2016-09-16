@@ -1,7 +1,8 @@
 'use strict';
 
-var gulp = require('gulp');
-var sass = require('gulp-sass');
+const gulp = require('gulp');
+const sass = require('gulp-sass');
+const babel = require('gulp-babel');
 
 var define = {
   sass:
@@ -26,6 +27,7 @@ gulp.task('sass', function () {
 // javascriptデプロイ
 gulp.task('javascript', function () {
   gulp.src(define.javascript.path)
+      .pipe(babel({presets: ['es2015']}))
       .pipe(gulp.dest(define.javascript.dest));
 });
 
