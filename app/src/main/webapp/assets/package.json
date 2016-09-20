@@ -4,8 +4,8 @@
   "description": "This is package.json for StockTraceWeb.",
   "main": "index.js",
   "scripts": {
-    "clean": "bin/clean.sh",
-    "build:bower":  "bin/build_bower.sh $npm_package_config_postfix",
+    "clean":        "bin/clean.sh",
+    "build:bower":  "bin/build_bower.sh",
     "build:ts":     "bin/build_ts.sh",
     "watch:ts":     "bin/build_ts.sh watch",
     "build:sass":   "bin/build_sass.sh",
