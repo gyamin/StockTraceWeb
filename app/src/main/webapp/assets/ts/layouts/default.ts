@@ -1,7 +1,10 @@
 'use strict'
-var App = App || {};
 
 class Hoge {
+    name: string
+    height: number
+    width: number
+
     constructor(height, width) {
         this.name = 'Polygon';
         this.height = height;
@@ -11,4 +14,4 @@ class Hoge {
     }
 }
 
-new Hoge(100, 200);
+let hoge = new Hoge(100, 200);

@@ -1,0 +1,29 @@
+{
+  "name": "assets",
+  "version": "1.0.0",
+  "description": "This is package.json for StockTraceWeb.",
+  "main": "index.js",
+  "scripts": {
+    "clean": "bin/clean.sh",
+    "build:bower":  "bin/build_bower.sh $npm_package_config_postfix",
+    "build:ts":     "bin/build_ts.sh",
+    "watch:ts":     "bin/build_ts.sh watch",
+    "build:sass":   "bin/build_sass.sh",
+    "watch:sass":   "bin/build_sass.sh watch",
+    "build:html":   "bin/deploy_html.sh",
+    "watch:html":   "bin/deploy_html.sh watch",
+    "build:all":    "npm run build:bower & npm run build:ts & npm run build:sass & npm run build:html",
+    "watch:all":    "npm run watch:ts & npm run watch:sass & npm run watch:html"
+  },
+  "author": "gyamin",
+  "license": "ISC",
+  "repository": "git@github.com:gyamin/stockTraceWeb.git",
+  "dependencies": {
+    "bower": "^1.7.9"
+  },
+  "devDependencies": {
+    "node-sass": "^3.10.0",
+    "typings": "^1.3.3",
+    "watch": "^0.19.2"
+  }
+}

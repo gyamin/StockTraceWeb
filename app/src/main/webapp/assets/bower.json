@@ -1,0 +1,22 @@
+{
+  "name": "assets",
+  "description": "This is bower.json for StockTraceWeb.",
+  "main": "index.js",
+  "authors": [
+    "gyamin"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/gyamin/stockTraceWeb",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.5.8",
+    "jQuery": "^3.1.0",
+    "bootstrap": "^3.3.7"
+  }
+}
