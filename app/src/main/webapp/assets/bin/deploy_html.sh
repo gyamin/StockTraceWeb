@@ -4,7 +4,7 @@ source ${execDir}/_common.sh
 
 # deploy html files
 if [ "${1}" = "watch" ]; then
-    ${baseDir}/node_modules/watch/cli.js "cp -Rf ${htmlSrcDir} ${htmlOutDir}" ${htmlSrcDir}
+    ${baseDir}/node_modules/watch/cli.js "rsync -av --delete ${htmlSrcDir}/ ${htmlOutDir}/" ${htmlSrcDir}
 else
-    cp -Rf ${htmlSrcDir} ${htmlOutDir}
+    rsync -av --delete ${htmlSrcDir}/ ${htmlOutDir}/
 fi

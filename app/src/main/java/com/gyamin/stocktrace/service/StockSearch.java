@@ -1,4 +1,4 @@
-package com.gyamin.stocktrace.searvice;
+package com.gyamin.stocktrace.service;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
