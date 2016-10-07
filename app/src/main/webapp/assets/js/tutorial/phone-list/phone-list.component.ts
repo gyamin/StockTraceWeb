@@ -6,7 +6,7 @@ component('phoneList', {
     controller: function PhoneListController() {
         this.phones = [
             {
-                name: 'Nexus S',
+                name: 'Nexus S A',
                 snippet: 'Fast just got faster with Nexus S.'
             }, {
                 name: 'Motorola XOOM™ with Wi-Fi',
