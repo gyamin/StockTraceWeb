@@ -1,6 +1,6 @@
 app.iml
 target
-src/main/webapp/resources/js
-src/main/webapp/resources/css
-src/main/webapp/resources/html
-src/main/webapp/resources/bower_components
+src/main/webapp/dist/js
+src/main/webapp/dist/css
+src/main/webapp/dist/html
+src/main/webapp/dist/bower_components

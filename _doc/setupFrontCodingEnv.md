@@ -27,10 +27,11 @@ $ npm install watch --save-dev
 
 ## bowerによるフロントライブラリのインストール
 ```
-$ ./node_modules/bower/bin/bower init .
-$ ./node_modules/bower/bin/bower install jQuery --save
-$ ./node_modules/bower/bin/bower install angular#1.5.8 --save
-$ ./node_modules/bower/bin/bower install bootstrap --save
+$ ./../node_modules/bower/bin/bower init .
+$ ./../node_modules/bower/bin/bower install jQuery --save
+$ ./../node_modules/bower/bin/bower install angular#1.5.8 --save
+$ ./../node_modules/bower/bin/bower install bootstrap --save
+$ ./../node_modules/bower/bin/bower install requirejs --save
 ```
 
 ## Typingsによる型定義の導入
@@ -56,4 +57,17 @@ $ ./node_modules/bower/bin/bower install bootstrap --save
     typings INFO reference Stripped reference "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/1f0791147c6c145227b1778bb26781a79d516917/jquery/jquery.d.ts" during installation from "bootstrap" (main)
     bootstrap
     └── (No dependencies)
+    
+    $ ./node_modules/typings/dist/bin.js install npm~requirejs --save
+    requirejs@^2.2.0
+    └── (No dependencies)
     ```
+
+# リポジトリチェックアウト時の環境構築手順
+
+```
+$ npm install
+$ cd src/
+$ ./../node_modules/bower/bin/bower install
+$ ./../node_modules/typings/dist/bin.js install
+```

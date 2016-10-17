@@ -16,7 +16,14 @@
     <context:component-scan base-package="com.gyamin.stocktrace.controller" />
     <context:component-scan base-package="com.gyamin.stocktrace.service" />
 
-    <mvc:resources mapping="/resources/**" location="/resources/" />
+    <!-- 以下の設定の場合、http://hostname/stocktrace/dist/html/index.html で webapp/app/dist/html/index.htmlにアクセスできる-->
+    <mvc:resources mapping="/**" location="/app/" />
+
+    <!-- 以下の設定の場合、http://hostname/stocktrace/html/index.html で webapp/app/dist/html/index.htmlにアクセスできる-->
+    <!--<mvc:resources mapping="/**" location="/app/dist/" />-->
+
+    <!-- 以下の設定の場合、http://hostname/stocktrace/public/html/index.html で webapp/app/dist/html/index.htmlにアクセスできる-->
+    <!--<mvc:resources mapping="/public/**" location="/app/dist/" />-->
 
     <mvc:annotation-driven />
 

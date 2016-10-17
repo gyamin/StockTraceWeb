@@ -1,5 +1,5 @@
 #!/bin/bash
-execDir=$(cd $(dirname $0); pwd)    # webapp/assets/bin
+execDir=$(cd $(dirname $0); pwd)    # webapp/bin
 source ${execDir}/_common.sh
 
 # compile typescript files
