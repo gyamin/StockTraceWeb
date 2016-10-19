@@ -1,4 +1,4 @@
-package com.gyamin.stocktrace.request.stock;
+package com.gyamin.stocktrace.request;
 import javax.validation.constraints.NotNull;
 
 public class SearchRequest {
