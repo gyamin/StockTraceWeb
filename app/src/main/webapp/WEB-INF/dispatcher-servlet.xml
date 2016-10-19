@@ -15,6 +15,7 @@
     <!-- @Autowired を利用して依存関係を注入できるよう、component-scanでパッケージを指定-->
     <context:component-scan base-package="com.gyamin.stocktrace.controller" />
     <context:component-scan base-package="com.gyamin.stocktrace.service" />
+    <context:component-scan base-package="com.gyamin.stocktrace.common" />
 
     <!-- 以下の設定の場合、http://hostname/stocktrace/dist/html/index.html で webapp/app/dist/html/index.htmlにアクセスできる-->
     <mvc:resources mapping="/**" location="/app/" />
