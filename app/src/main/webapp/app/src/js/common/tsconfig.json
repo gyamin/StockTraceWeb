@@ -4,8 +4,8 @@
         "target": "es5",
         "noImplicitAny": false,
         "sourceMap": true,
-        "outDir": "./../resources/js",
-        "rootDir": "js/"
+        "outFile": "./../../../dist/js/common/common.js",
+        "rootDir": "./"
     },
     "exclude": [
         "node_modules"

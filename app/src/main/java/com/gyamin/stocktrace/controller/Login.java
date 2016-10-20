@@ -36,6 +36,7 @@ public class Login {
         User loginUser = loginService.doLogin(request);
         System.out.print(applicationProperties.get("app.test"));
 
-        return new ResponseEntity<User>(loginUser, HttpStatus.OK);
+//        return new ResponseEntity<User>(loginUser, HttpStatus.OK);
+        return new ResponseEntity<User>(loginUser, HttpStatus.BAD_REQUEST);
     }
 }
