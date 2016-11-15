@@ -1,0 +1,10 @@
+---
+#
+
+- name: apply common configuration to all nodes
+  hosts: ap_svr
+  roles:
+    - common
+    - nginx
+    - tomcat
+    - postgres

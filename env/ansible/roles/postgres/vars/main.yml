@@ -1,0 +1,3 @@
+pg_home: /usr/pgsql-9.6
+pg_data: /var/lib/pgsql/9.6/data
+port: 5432

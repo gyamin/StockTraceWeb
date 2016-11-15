@@ -1,0 +1,30 @@
+---
+- name: Install pgdg Repository
+  yum: name=https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/pgdg-centos96-9.6-3.noarch.rpm state=present
+  when: "ansible_os_family == 'RedHat' and ansible_distribution_major_version == '7'"
+
+- name: Install PostgreSQL Packages
+  yum: name={{ item }} state=present enablerepo=pgdg96
+  with_items:
+    - postgresql96
+    - postgresql96-libs
+    - postgresql96-server
+
+- name: Confirm already init pg_data direcotry
+  shell: "ls -l {{pg_data}}/PG_VERSION"
+  register: pg_version
+
+#- debug: var=pg_version
+
+- name: Init Database by postgres user to pg_data directory
+  shell: "{{pg_home}}/bin/initdb -D {{pg_data}}"
+  become: True
+  become_user: postgres
+  when: pg_version.rc != 0
+
+- name: Start PostgreSQL Server
+  service: name=postgresql-9.6 enabled=yes state=started
+
+- name: insert firewalld rule for tomcat http port
+  firewalld: port={{ port }}/tcp permanent=true state=enabled immediate=yes
+  when: "ansible_os_family == 'RedHat' and ansible_distribution_major_version == '7'"
