@@ -1,6 +1,26 @@
 [local]
-# loc_dev1    ansible_port=22 ansible_host=10.211.55.7    ansible_user=yasumasa
 loc_cent7   ansible_port=22 ansible_host=10.211.55.8    ansible_user=gyamin
 
-[ap_svr]
+[staging]
 loc_cent7   ansible_port=22 ansible_host=10.211.55.8    ansible_user=gyamin
+
+[production]
+loc_cent7   ansible_port=22 ansible_host=10.211.55.8    ansible_user=gyamin
+
+# web server
+[web_servers:children]
+local
+staging
+production
+
+# ap server
+[ap_servers:children]
+local
+staging
+production
+
+# db server
+[db_servers:children]
+local
+staging
+production

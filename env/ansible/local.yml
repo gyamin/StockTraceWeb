@@ -1,0 +1,10 @@
+---
+#
+- name: setup local developping environment
+  hosts: local
+  roles:
+    - common
+    - nginx
+    - tomcat
+    - postgres
+    - deploy

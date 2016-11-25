@@ -11,9 +11,9 @@
   user: name=tomcat group=tomcat home=/usr/share/tomcat createhome=no
 
 - name: Download Tomcat
-  get_url: url=http://ftp.tsukuba.wide.ad.jp/software/apache/tomcat/tomcat-8/v8.0.38/bin/{{version}}.tar.gz dest=/opt/{{version}}.tar.gz
+  get_url: url=http://ftp.tsukuba.wide.ad.jp/software/apache/tomcat/tomcat-8/v8.0.39/bin/{{version}}.tar.gz dest=/opt/{{version}}.tar.gz
 
-- name: Extract archive
+- name: Extract Tomcat archive
   command: chdir=/usr/share /bin/tar xvf /opt/{{version}}.tar.gz -C /opt/
 
 - name: Symlink install directory
@@ -28,6 +28,34 @@
 - name: Start Tomcat
   service: name=tomcat state=started enabled=yes
 
-- name: insert firewalld rule for tomcat http port
+- name: Insert firewalld rule for tomcat http port
   firewalld: port={{port}}/tcp permanent=true state=enabled immediate=yes
   when: "ansible_os_family == 'RedHat' and ansible_distribution_major_version == '7'"
+
+# Install Maven
+- name: Install Maven
+  get_url: url=http://ftp.tsukuba.wide.ad.jp/software/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz dest=/opt
+
+- name: Extract Maven archive
+  command: /bin/tar xvf /opt/apache-maven-3.3.9-bin.tar.gz -C /opt
+
+- name: Symlink install directory
+  file: src=/opt/apache-maven-3.3.9 path=/usr/share/maven state=link mode=0755
+
+- name: Change ownership of Maven installation
+  file: path=/usr/share/maven/ owner=tomcat group=tomcat state=directory recurse=yes
+
+# export path setting for tomcat user
+- name: Put tomcat user .bashrc
+  template: src=.bash_profile dest=/usr/share/tomcat/.bash_profile mode=0644
+
+- name: Change ownership
+  file: path=/usr/share/tomcat/.bash_profile owner=tomcat group=tomcat state=file
+
+# Notice: ansibleで.bash_profileを読み込むには、shell bash -lcでコマンドを実行する必要が有る。
+#- name: sample
+#  shell: bash -lc "mvn -v"
+#  register: env
+#  become: True
+#  become_method: sudo
+#  become_user: tomcat

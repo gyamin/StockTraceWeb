@@ -2,13 +2,13 @@
 - name: Install nginx
   yum: name=nginx enablerepo=epel state=present
 
-- name: Start nginx Server
-  service: name=nginx enabled=yes state=started
-
 - name: Put nginx.conf
   template: src=nginx.conf dest=/etc/nginx mode=0644
   notify:
   - restart nginx
+
+- name: Start nginx Server
+  service: name=nginx enabled=yes state=started
 
 - name: Install policycoreutils-python
   yum: name=policycoreutils-python state=present

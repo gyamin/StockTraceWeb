@@ -1,0 +1,8 @@
+---
+- name: Create repository directory
+  file: path=/opt/repos state=directory owner=gyamin group=gyamin mode=0755
+
+- name: Clone repository
+  git: repo=https://github.com/gyamin/stockTraceWeb.git
+       dest=/opt/repos/stockTraceWeb
+       version=master
