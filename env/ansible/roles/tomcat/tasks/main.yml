@@ -1,6 +1,9 @@
 ---
 - name: Install Java8
-  yum: name=java-1.8.0-openjdk state=present
+  yum: name={{ item }} state=present
+  with_items:
+    - java-1.8.0-openjdk
+    - java-1.8.0-openjdk-devel
 #  become: True
 #  become_method: sudo
 

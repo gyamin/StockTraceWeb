@@ -96,9 +96,8 @@
     </dependencies>
 
     <build>
-        <finalName>app</finalName>
+        <finalName>stocktrace</finalName>
         <plugins>
-
             <!-- Config: Maven Tomcat Plugin -->
             <!-- http://mvnrepository.com/artifact/org.apache.tomcat.maven/tomcat7-maven-plugin -->
             <plugin>

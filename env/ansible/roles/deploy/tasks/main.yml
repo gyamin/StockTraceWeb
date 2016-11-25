@@ -1,8 +1,28 @@
 ---
 - name: Create repository directory
-  file: path=/opt/repos state=directory owner=gyamin group=gyamin mode=0755
+  file: path=/opt/repos state=directory owner=tomcat group=tomcat mode=0755
 
 - name: Clone repository
   git: repo=https://github.com/gyamin/stockTraceWeb.git
        dest=/opt/repos/stockTraceWeb
-       version=master
+       version=develop
+
+- name: Change repository owner
+  file: path=/opt/repos/stockTraceWeb owner=tomcat group=tomcat state=directory recurse=yes
+
+#- name: Debug
+#  shell: bash -lc pwd chdir=/opt/repos/stockTraceWeb/app
+#  register: debug
+#
+#- debug: var=debug
+
+- name: Build application (Create war file)
+  shell: source ~/.bash_profile;mvn package chdir=/opt/repos/stockTraceWeb/app
+  become: True
+  become_user: tomcat
+
+- name: Copy war file to tomcat webapps directory
+  copy: src=/opt/repos/stockTraceWeb/app/target/stocktrace dest=/etc/foo.conf owner=foo group=foo mode=0644
+  become: True
+  become_user: tomcat
+
