@@ -1,6 +1,7 @@
 app.iml
 target
-src/main/webapp/app/dist
+src/main/webapp/app/dist/
+!src/main/webapp/app/dist/.gitkeep
 src/main/webapp/app/node_modules
 src/main/webapp/app/src/bower_components
 src/main/webapp/app/src/typings

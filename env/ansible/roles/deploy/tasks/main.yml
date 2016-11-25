@@ -1,4 +1,6 @@
 ---
+# Build and deploy Java Application
+# -----------------------------------------------
 - name: Create repository directory
   file: path=/opt/repos state=directory owner=tomcat group=tomcat mode=0755
 
@@ -21,8 +23,42 @@
   become: True
   become_user: tomcat
 
+# Notice: copyはローカルにあるファイルをリモートにコピーするコマンド
 - name: Copy war file to tomcat webapps directory
-  copy: src=/opt/repos/stockTraceWeb/app/target/stocktrace dest=/etc/foo.conf owner=foo group=foo mode=0644
+  shell: creates=/usr/share/tomcat/webapps/stocktrace.war cp /opt/repos/stockTraceWeb/app/target/stocktrace.war /usr/share/tomcat/webapps/stocktrace.war
+  become: True
+  become_user: tomcat
+  notify: restart tomcat
+
+# Build javascript/css and deploy html files
+# -----------------------------------------------
+- name: Install nodejs
+  yum: name=nodejs state=present
+
+- name: Install TypeScript
+  shell: npm install -g typescript
+
+- name: Install npm modules
+  shell: chdir=/opt/repos/stockTraceWeb/app/src/main/webapp/app npm install
   become: True
   become_user: tomcat
 
+- name: Install bower modules
+  shell: chdir=/opt/repos/stockTraceWeb/app/src/main/webapp/app/src ./../node_modules/bower/bin/bower install
+  become: True
+  become_user: tomcat
+
+- name: Install typings modules
+  shell: chdir=/opt/repos/stockTraceWeb/app/src/main/webapp/app/src ./../node_modules/typings/dist/bin.js install
+  become: True
+  become_user: tomcat
+
+- name: Copy bower components
+  shell: chdir=/opt/repos/stockTraceWeb/app/src/main/webapp/app npm run build:bower
+  become: True
+  become_user: tomcat
+
+- name: Build javascript/css and deploy html
+  shell: chdir=/opt/repos/stockTraceWeb/app/src/main/webapp/app npm run:clean;npm run build:all
+  become: True
+  become_user: tomcat

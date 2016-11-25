@@ -24,6 +24,10 @@ component('login', {
             $http.post(Common.Config.URL_PREFIX + '/login', loginModel).then(
                 // success callback
                 function(response) {
+                    if(response.error) {
+
+                    }
+
                     logger.debug("success");
                     logger.debug(JSON.stringify(response));
                     $window.location.href = '/stocks';
@@ -32,7 +36,7 @@ component('login', {
                 function(response) {
                     logger.debug("error");
                     logger.debug(JSON.stringify(response));
-                    self.message = "ログインIDまたはパスワードに誤りがあります。"
+                    self.message = "サーバ通信に失敗しました。"
             })
         };
     }]

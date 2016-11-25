@@ -34,7 +34,6 @@ public class Login {
     @ResponseBody
     public Object login(@RequestBody PostLogin request) {
         User loginUser = loginService.doLogin(request);
-        System.out.print(applicationProperties.get("app.test"));
 
 //        return new ResponseEntity<User>(loginUser, HttpStatus.OK);
         return new ResponseEntity<User>(loginUser, HttpStatus.BAD_REQUEST);

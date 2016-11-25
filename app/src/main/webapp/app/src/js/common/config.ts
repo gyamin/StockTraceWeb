@@ -3,5 +3,5 @@ namespace Common.Config {
 
     export const LOG_LEVEL = Common.LogLevel.debug;
 
-    export const URL_PREFIX = "/stocktrace";
+    export const URL_PREFIX = "";
 }
