@@ -53,12 +53,17 @@
   become: True
   become_user: tomcat
 
+- name: Build javascript/css and deploy html
+  shell: chdir=/opt/repos/stockTraceWeb/app/src/main/webapp/app npm run:clean;npm run build:all
+  become: True
+  become_user: tomcat
+
 - name: Copy bower components
   shell: chdir=/opt/repos/stockTraceWeb/app/src/main/webapp/app npm run build:bower
   become: True
   become_user: tomcat
 
-- name: Build javascript/css and deploy html
-  shell: chdir=/opt/repos/stockTraceWeb/app/src/main/webapp/app npm run:clean;npm run build:all
+- name: Copy javascript/css and deploy html to tomcat webapps directory
+  shell: chdir=/opt/repos/stockTraceWeb/app/src/main/webapp/app cp -Rf ./dist /opt/apache-tomcat-8.0.39/webapps/stocktrace/app/
   become: True
   become_user: tomcat

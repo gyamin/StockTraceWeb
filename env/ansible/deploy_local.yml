@@ -1,0 +1,6 @@
+---
+#
+- name: deploy applocation to local
+  hosts: local
+  roles:
+    - deploy
