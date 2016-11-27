@@ -58,6 +58,12 @@
   become: True
   become_user: tomcat
 
+# JavaScript のcommonディレクトリは単体でbuildが必要
+- name: Build javascript common
+  shell: chdir=/opt/repos/stockTraceWeb/app/src/main/webapp/app/src/js/common tsc
+  become: True
+  become_user: tomcat
+
 - name: Copy bower components
   shell: chdir=/opt/repos/stockTraceWeb/app/src/main/webapp/app npm run build:bower
   become: True
