@@ -2,6 +2,7 @@ package com.gyamin.stocktrace.controller;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 import com.gyamin.stocktrace.bean.StockFluctuationInPeriodBean;
+import com.gyamin.stocktrace.entity.StockPrices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,8 +29,8 @@ public class Stock {
             @RequestParam(defaultValue = "東証一部") String section,
             @RequestParam String issueCode,
             Model model) {
-        List<StockFluctuationInPeriodBean> prices = stockSearch.selectAll();
-        model.addAttribute("modelPrices", prices);
+        StockPrices stockPrices = stockSearch.selectById();
+        model.addAttribute("modelPrices", stockPrices);
         return "stocks/search";
     }
 }
