@@ -1,17 +1,18 @@
 package com.gyamin.stocktrace.bean;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
  *
  */
-public class StockFluctuationInPeriodBean {
+public class StockPrices {
     private String section;             // 市場
     private Integer issueCode;          // 銘柄コード
     private String issueName;           // 銘柄名
 
     private Date tradeDate;             // 取引日
-    private Double nowPrice;            // 現在値
+private BigDecimal nowPrice;            // 現在値
 
     public String getSection() {
         return section;
@@ -45,11 +46,11 @@ public class StockFluctuationInPeriodBean {
         this.tradeDate = tradeDate;
     }
 
-    public Double getNowPrice() {
+    public BigDecimal getNowPrice() {
         return nowPrice;
     }
 
-    public void setNowPrice(Double nowPrice) {
+    public void setNowPrice(BigDecimal nowPrice) {
         this.nowPrice = nowPrice;
     }
 }
