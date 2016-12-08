@@ -68,6 +68,11 @@ pg_hba.conf、postgresql.confをNetwork環境に合わせて変更。
 
 + postgresqlユーザの作成
 ```
+$ sudo su - postgres
+$ psql
+psql (9.6.1)
+"help" でヘルプを表示します.
+
 # create role developer login password 'パスワード';
 CREATE ROLE
 ```
@@ -78,3 +83,12 @@ CREATE ROLE
 CREATE DATABASE
 ```
 
+## データのインポート
+```
+$ ls -l
+合計 12644
+-rw-r--r--. 1 gyamin gyamin 12944629 12月  7 11:15 20161206_010201_stock_trace.dump.gz
+$ dropdb -U postgres stock_trace
+$ createdb -U postgres stock_trace --owner=developer
+$ gunzip -c 20161206_010201_stock_trace.dump.gz | psql -U postgres stock_trace
+```

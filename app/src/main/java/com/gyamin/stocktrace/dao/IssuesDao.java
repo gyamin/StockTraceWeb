@@ -1,8 +1,7 @@
 package com.gyamin.stocktrace.dao;
 
 import com.gyamin.stocktrace.AppConfig;
-import com.gyamin.stocktrace.entity.StockPrices;
-import java.time.LocalDate;
+import com.gyamin.stocktrace.entity.Issues;
 import org.seasar.doma.Dao;
 import org.seasar.doma.Delete;
 import org.seasar.doma.Insert;
@@ -12,34 +11,34 @@ import org.seasar.doma.Update;
 /**
  */
 @Dao(config = AppConfig.class)
-public interface StockPricesDao {
+public interface IssuesDao {
 
     /**
-     * @param tradeDate
+     * @param section
      * @param issueCode
-     * @return the StockPrices entity
+     * @return the Issues entity
      */
     @Select
-    StockPrices selectById(LocalDate tradeDate, Integer issueCode);
+    Issues selectById(String section, Integer issueCode);
 
     /**
      * @param entity
      * @return affected rows
      */
     @Insert
-    int insert(StockPrices entity);
+    int insert(Issues entity);
 
     /**
      * @param entity
      * @return affected rows
      */
     @Update
-    int update(StockPrices entity);
+    int update(Issues entity);
 
     /**
      * @param entity
      * @return affected rows
      */
     @Delete
-    int delete(StockPrices entity);
+    int delete(Issues entity);
 }
