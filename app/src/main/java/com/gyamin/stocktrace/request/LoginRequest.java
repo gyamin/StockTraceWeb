@@ -1,8 +1,10 @@
 package com.gyamin.stocktrace.request;
 import javax.validation.constraints.NotNull;
 
-public class PostLogin {
+public class LoginRequest {
+    @NotNull
     private String id;
+    @NotNull
     private String password;
 
     public String getId() {

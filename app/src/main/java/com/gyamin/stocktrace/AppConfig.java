@@ -21,6 +21,12 @@ public class AppConfig implements Config {
     private final TransactionManager transactionManager;
 
     private AppConfig() {
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
         dialect = new PostgresDialect();
         dataSource = new LocalTransactionDataSource(
                 "jdbc:postgresql://10.211.55.8:5432/stock_trace", "developer", "developerPwd");
