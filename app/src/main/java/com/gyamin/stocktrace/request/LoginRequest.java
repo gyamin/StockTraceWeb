@@ -2,9 +2,10 @@ package com.gyamin.stocktrace.request;
 import javax.validation.constraints.NotNull;
 
 public class LoginRequest {
-    @NotNull
+    @NotNull(message = "ログインIDは必須です。")
     private String id;
-    @NotNull
+
+    @NotNull(message = "パスワードは必須です。")
     private String password;
 
     public String getId() {

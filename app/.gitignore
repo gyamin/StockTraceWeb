@@ -1,3 +1,4 @@
+.gradle
 app.iml
 target
 src/main/webapp/app/dist/
