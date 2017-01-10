@@ -28,18 +28,17 @@ import com.gyamin.stocktrace.exception.ValidateException;
 import com.gyamin.stocktrace.bean.ErrorResponse;
 
 @Controller
-public class Login {
+public class LoginController {
 
     @Autowired
     private StockSearch stockSearch;
 
     /**
      * ログイン画面表示
-     * @param model
      * @return
      */
     @RequestMapping(value = "/login", method = GET)
-    public String loginIndex(Model model) {
+    public String loginIndex() {
         return "login/index";
     }
 
