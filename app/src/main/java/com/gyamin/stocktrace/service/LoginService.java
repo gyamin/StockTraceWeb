@@ -9,10 +9,11 @@ import org.springframework.stereotype.Service;
 
 import org.seasar.doma.jdbc.tx.TransactionManager;
 
+import java.util.Properties;
+
 @Service
 public class LoginService {
     public Users doLogin(LoginRequest request) {
-
         TransactionManager tm = AppConfig.singleton().getTransactionManager();
         UsersDao dao = new UsersDaoImpl();
 

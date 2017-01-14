@@ -1,7 +1,8 @@
 package com.gyamin.web.session;
 
-import javax.servlet.http.*;
-import javax.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,28 +12,28 @@ public class SessionManager {
     private CookieOperator cookieOperator;
 
     public SessionManager() {
-        this.sessionDataOperation = new RedisOperator();
-        this.cookieOperator = new CookieOperator();
+        sessionDataOperation = new RedisOperator();
+        cookieOperator = new CookieOperator();
     }
 
     public void startSession() {
-        String sessionId = this.cookieOperator.setSessionIdToCookie();
+        String sessionId = cookieOperator.setSessionIdToCookie();
     }
 
     public void storeSessionData(HashMap<String, Object> value) {
-        String key = this.cookieOperator.getSessionId();
+        String key = cookieOperator.getSessionId();
         this.sessionDataOperation.storeSessionData(key, value);
     }
 
     public Map<String, Object> getSessionData() {
-        String key = this.cookieOperator.getSessionId();
-        Map<String, Object> sessionData = this.sessionDataOperation.getSessionData(key);
+        String key = cookieOperator.getSessionId();
+        Map<String, Object> sessionData = sessionDataOperation.getSessionData(key);
         return sessionData;
     }
 
     public void endSession() {
-        String key = this.cookieOperator.getSessionId();
-        this.cookieOperator.removeSessionIdFromCookie();
-        this.sessionDataOperation.deleteSessionData(key);
+        String key = cookieOperator.getSessionId();
+        cookieOperator.removeSessionIdFromCookie();
+        sessionDataOperation.deleteSessionData(key);
     }
 }

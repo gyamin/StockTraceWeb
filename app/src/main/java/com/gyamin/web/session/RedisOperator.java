@@ -1,22 +1,26 @@
 package com.gyamin.web.session;
 
+import com.gyamin.stocktrace.config.RedisConfig;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import redis.clients.jedis.Jedis;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.gyamin.stocktrace.common.ApplicationProperties;
-
 public class RedisOperator implements SessionDataOperation {
-    Jedis jedis;
+    private RedisConfig redisConfig;
+    private Jedis jedis;
 
     public RedisOperator() {
-         this.jedis = new Jedis("loc_cent7");
+        ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("redis-config.xml");
+        redisConfig = ctx.getBean(RedisConfig.class);
+        this.jedis = new Jedis(redisConfig.getRedisHost());
     }
 
     @Override
     public boolean storeSessionData(String key, HashMap value) {
+
         this.jedis.hmset(key, value);
-        this.jedis.expire(key, 30);
+        this.jedis.expire(key, redisConfig.getRedisExpire());
         return false;
     }
 
