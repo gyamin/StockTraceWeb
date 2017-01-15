@@ -1,7 +1,8 @@
 package com.gyamin.web.session;
 
+import com.gyamin.stocktrace.config.RedisConfig;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +13,9 @@ public class SessionManager {
     private CookieOperator cookieOperator;
 
     public SessionManager() {
-        sessionDataOperation = new RedisOperator();
+        ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("redis-config.xml");
+        RedisConfig redisConfig = ctx.getBean(RedisConfig.class);
+        sessionDataOperation = new RedisOperator(redisConfig);
         cookieOperator = new CookieOperator();
     }
 
@@ -20,20 +23,27 @@ public class SessionManager {
         String sessionId = cookieOperator.setSessionIdToCookie();
     }
 
-    public void storeSessionData(HashMap<String, Object> value) {
-        String key = cookieOperator.getSessionId();
-        this.sessionDataOperation.storeSessionData(key, value);
+    public void storeSessionData(Map<String, Object> value) {
+        String sessionKey = cookieOperator.getSessionId();
+        this.sessionDataOperation.storeSessionData(sessionKey, value);
     }
 
-    public Map<String, Object> getSessionData() {
-        String key = cookieOperator.getSessionId();
-        Map<String, Object> sessionData = sessionDataOperation.getSessionData(key);
+    public void pushSessionData(String key, String value) {
+        Map<String, String> sessionData = this.getSessionData();
+        sessionData.put(key, value);
+        this.storeSessionData(sessionData);
+    }
+
+    public Map<String, String> getSessionData() {
+        String sessionKey = cookieOperator.getSessionId();
+        Map<String, String> sessionData = sessionDataOperation.getSessionData(sessionKey);
         return sessionData;
     }
 
     public void endSession() {
-        String key = cookieOperator.getSessionId();
+        String sessionKey = cookieOperator.getSessionId();
         cookieOperator.removeSessionIdFromCookie();
-        sessionDataOperation.deleteSessionData(key);
+        sessionDataOperation.deleteSessionData(sessionKey);
     }
+
 }

@@ -2,7 +2,6 @@ package com.gyamin.stocktrace.controller;
 
 import com.gyamin.stocktrace.exception.ApplicationException;
 import com.gyamin.web.session.SessionManager;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -20,6 +19,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @Controller
 public class SampleController {
 
+
     /**
      * セッション開始サンプル
      * @return
@@ -27,8 +27,7 @@ public class SampleController {
     @RequestMapping(value = "/start_session", method = GET, produces = "application/json;charset=utf-8")
     @ResponseBody
     public Object startSession() throws ApplicationException {
-        SessionManager sessionManager = new SessionManager();
-        sessionManager.startSession();
+        (new SessionManager()).startSession();
         return new ResponseEntity<String>("", HttpStatus.OK);
     }
 
@@ -39,10 +38,9 @@ public class SampleController {
     @RequestMapping(value = "/store_session", method=POST, produces="application/json;charset=utf-8")
     @ResponseBody
     public Object storeSession(@RequestParam("param1") String param1 ) throws ApplicationException {
-        SessionManager sessionManager = new SessionManager();
         HashMap<String, Object> sessionData = new HashMap<String, Object>();
         sessionData.put("param1", param1);
-        sessionManager.storeSessionData(sessionData);
+        (new SessionManager()).storeSessionData(sessionData);
         return new ResponseEntity<String>("", HttpStatus.OK);
     }
 
@@ -53,8 +51,7 @@ public class SampleController {
     @RequestMapping(value = "/get_session", method = GET, produces = "application/json;charset=utf-8")
     @ResponseBody
     public Object getSession() throws ApplicationException {
-        SessionManager sessionManager = new SessionManager();
-        Map<String, Object> sessionData = sessionManager.getSessionData();
+        Map<String, Object> sessionData = (new SessionManager()).getSessionData();
         return new ResponseEntity<String>(sessionData.toString(), HttpStatus.OK);
     }
 

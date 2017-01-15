@@ -3,6 +3,7 @@ package com.gyamin.stocktrace.controller;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 import com.gyamin.stocktrace.exception.ApplicationException;
 import com.gyamin.stocktrace.service.LoginService;
+import com.gyamin.web.session.SessionManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,9 +30,6 @@ import com.gyamin.stocktrace.bean.ErrorResponse;
 
 @Controller
 public class LoginController {
-
-    @Autowired
-    private StockSearch stockSearch;
 
     /**
      * ログイン画面表示
@@ -67,6 +65,11 @@ public class LoginController {
         if(loginUser == null) {
             throw new ApplicationException("ログインIDまたはパスワードに誤りがあります。");
         }
+        // セッション開始
+        (new SessionManager()).startSession();
+        // セッション情報にユーザ情報を格納
+        (new SessionManager()).pushSessionData("userInfo", loginUser);
+
         return new ResponseEntity<Users>(loginUser, HttpStatus.OK);
     }
 
