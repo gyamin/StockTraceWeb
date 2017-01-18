@@ -18,7 +18,7 @@ public class RedisOperator implements SessionDataOperation {
     }
 
     @Override
-    public boolean storeSessionData(String key, Map value) {
+    public boolean storeSessionData(String key, Map<String, String> value) {
         this.jedis.hmset(key, value);
         this.jedis.expire(key, redisConfig.getRedisExpire());
         return false;

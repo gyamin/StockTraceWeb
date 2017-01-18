@@ -1,32 +1,33 @@
 package com.gyamin.stocktrace.controller;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
-import com.gyamin.stocktrace.exception.ApplicationException;
-import com.gyamin.stocktrace.service.LoginService;
-import com.gyamin.web.session.SessionManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.MultiValueMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.ui.Model;
 import org.springframework.http.MediaType;
+import org.apache.commons.beanutils.PropertyUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.gyamin.stocktrace.entity.Users;
-import com.gyamin.stocktrace.request.LoginRequest;
-import com.gyamin.stocktrace.service.StockSearch;
+import com.gyamin.stocktrace.exception.ApplicationException;
 import com.gyamin.stocktrace.exception.ValidateException;
 import com.gyamin.stocktrace.bean.ErrorResponse;
+import com.gyamin.stocktrace.service.LoginService;
+import com.gyamin.web.session.SessionManager;
+import com.gyamin.stocktrace.entity.Users;
+import com.gyamin.stocktrace.request.LoginRequest;
 
 @Controller
 public class LoginController {
@@ -50,7 +51,7 @@ public class LoginController {
      */
     @RequestMapping(value = "/login", method = POST, consumes= MediaType.APPLICATION_JSON_VALUE, produces = "application/json")
     @ResponseBody
-    public Object login(@RequestBody @Valid LoginRequest request, BindingResult bindingResult, HttpServletRequest httpServletRequest) throws ApplicationException {
+    public Object login(@RequestBody @Valid LoginRequest request, BindingResult bindingResult, HttpServletRequest httpServletRequest) throws ApplicationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         // 引数にHttpServletRequestを設定すると、HttpServletRequestを取得できる
         System.out.println(httpServletRequest.getMethod());     // POST
         // リクエストバリデーション
@@ -61,16 +62,9 @@ public class LoginController {
         }
         // userId, passwordに該当するユーザが存在するか確認する
         LoginService service = new LoginService();
-        Users loginUser = service.doLogin(request);
-        if(loginUser == null) {
-            throw new ApplicationException("ログインIDまたはパスワードに誤りがあります。");
-        }
-        // セッション開始
-        (new SessionManager()).startSession();
-        // セッション情報にユーザ情報を格納
-        (new SessionManager()).pushSessionData("userInfo", loginUser);
+        Map sessionInfo = service.doLogin(request);
 
-        return new ResponseEntity<Users>(loginUser, HttpStatus.OK);
+        return new ResponseEntity<Users>((MultiValueMap<String, String>) sessionInfo, HttpStatus.OK);
     }
 
     /**

@@ -38,7 +38,7 @@ public class SampleController {
     @RequestMapping(value = "/store_session", method=POST, produces="application/json;charset=utf-8")
     @ResponseBody
     public Object storeSession(@RequestParam("param1") String param1 ) throws ApplicationException {
-        HashMap<String, Object> sessionData = new HashMap<String, Object>();
+        Map<String, String> sessionData = new HashMap<String, String>();
         sessionData.put("param1", param1);
         (new SessionManager()).storeSessionData(sessionData);
         return new ResponseEntity<String>("", HttpStatus.OK);
@@ -51,7 +51,7 @@ public class SampleController {
     @RequestMapping(value = "/get_session", method = GET, produces = "application/json;charset=utf-8")
     @ResponseBody
     public Object getSession() throws ApplicationException {
-        Map<String, Object> sessionData = (new SessionManager()).getSessionData();
+        Map<String, String> sessionData = (new SessionManager()).getSessionData();
         return new ResponseEntity<String>(sessionData.toString(), HttpStatus.OK);
     }
 

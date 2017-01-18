@@ -23,15 +23,9 @@ public class SessionManager {
         String sessionId = cookieOperator.setSessionIdToCookie();
     }
 
-    public void storeSessionData(Map<String, Object> value) {
+    public void storeSessionData(Map<String, String> value) {
         String sessionKey = cookieOperator.getSessionId();
         this.sessionDataOperation.storeSessionData(sessionKey, value);
-    }
-
-    public void pushSessionData(String key, String value) {
-        Map<String, String> sessionData = this.getSessionData();
-        sessionData.put(key, value);
-        this.storeSessionData(sessionData);
     }
 
     public Map<String, String> getSessionData() {
