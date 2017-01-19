@@ -1,6 +1,8 @@
 package com.gyamin.stocktrace.controller;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +13,6 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
-import org.apache.commons.beanutils.PropertyUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -51,7 +52,8 @@ public class LoginController {
      */
     @RequestMapping(value = "/login", method = POST, consumes= MediaType.APPLICATION_JSON_VALUE, produces = "application/json")
     @ResponseBody
-    public Object login(@RequestBody @Valid LoginRequest request, BindingResult bindingResult, HttpServletRequest httpServletRequest) throws ApplicationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+    public Object login(@RequestBody @Valid LoginRequest request, BindingResult bindingResult, HttpServletRequest httpServletRequest)
+            throws ApplicationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException, JsonProcessingException {
         // 引数にHttpServletRequestを設定すると、HttpServletRequestを取得できる
         System.out.println(httpServletRequest.getMethod());     // POST
         // リクエストバリデーション
@@ -62,9 +64,9 @@ public class LoginController {
         }
         // userId, passwordに該当するユーザが存在するか確認する
         LoginService service = new LoginService();
-        Map sessionInfo = service.doLogin(request);
+        String sessionInfo = service.doLogin(request);
 
-        return new ResponseEntity<Users>((MultiValueMap<String, String>) sessionInfo, HttpStatus.OK);
+        return new ResponseEntity<String>(sessionInfo, HttpStatus.OK);
     }
 
     /**

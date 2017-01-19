@@ -23,14 +23,14 @@ public class SessionManager {
         String sessionId = cookieOperator.setSessionIdToCookie();
     }
 
-    public void storeSessionData(Map<String, String> value) {
+    public void storeSessionData(String value) {
         String sessionKey = cookieOperator.getSessionId();
         this.sessionDataOperation.storeSessionData(sessionKey, value);
     }
 
-    public Map<String, String> getSessionData() {
+    public String getSessionData() {
         String sessionKey = cookieOperator.getSessionId();
-        Map<String, String> sessionData = sessionDataOperation.getSessionData(sessionKey);
+        String sessionData = sessionDataOperation.getSessionData(sessionKey);
         return sessionData;
     }
 

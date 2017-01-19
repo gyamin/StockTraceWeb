@@ -1,5 +1,7 @@
 package com.gyamin.stocktrace.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gyamin.stocktrace.exception.ApplicationException;
 import com.gyamin.web.session.SessionManager;
 import org.springframework.http.HttpStatus;
@@ -37,10 +39,15 @@ public class SampleController {
      */
     @RequestMapping(value = "/store_session", method=POST, produces="application/json;charset=utf-8")
     @ResponseBody
-    public Object storeSession(@RequestParam("param1") String param1 ) throws ApplicationException {
+    public Object storeSession(@RequestParam("param1") String param1 ) throws ApplicationException, JsonProcessingException {
         Map<String, String> sessionData = new HashMap<String, String>();
         sessionData.put("param1", param1);
-        (new SessionManager()).storeSessionData(sessionData);
+
+        // JSON文字列へ変換
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonSessionInfo = mapper.writeValueAsString(sessionData);
+
+        (new SessionManager()).storeSessionData(jsonSessionInfo);
         return new ResponseEntity<String>("", HttpStatus.OK);
     }
 
@@ -51,7 +58,7 @@ public class SampleController {
     @RequestMapping(value = "/get_session", method = GET, produces = "application/json;charset=utf-8")
     @ResponseBody
     public Object getSession() throws ApplicationException {
-        Map<String, String> sessionData = (new SessionManager()).getSessionData();
+        String sessionData = (new SessionManager()).getSessionData();
         return new ResponseEntity<String>(sessionData.toString(), HttpStatus.OK);
     }
 

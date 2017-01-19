@@ -1,0 +1,14 @@
+version: '1'
+services:
+  mysql:
+    image: "mysql:5.6"
+    container_name: "mysql"
+    ports:
+     - "3306:3306"
+    environment:
+      MYSQL_USER: raksul
+      MYSQL_PASSWORD: raksul
+      MYSQL_DATABASE: raksul
+      MYSQL_ROOT_PASSWORD: raksul
+    volumes:
+     - "./docker/mysql/conf.d:/etc/mysql/conf.d"

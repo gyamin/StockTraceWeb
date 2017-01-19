@@ -9,18 +9,15 @@ import com.gyamin.stocktrace.exception.ApplicationException;
 import com.gyamin.stocktrace.request.LoginRequest;
 import com.gyamin.stocktrace.entity.Users;
 import com.gyamin.web.session.SessionManager;
-import org.apache.commons.beanutils.PropertyUtils;
 import org.springframework.stereotype.Service;
 
 import org.seasar.doma.jdbc.tx.TransactionManager;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Map;
-import java.util.Properties;
 
 @Service
 public class LoginService {
-    public Map doLogin(LoginRequest request) throws ApplicationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException, JsonProcessingException {
+    public String doLogin(LoginRequest request) throws ApplicationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException, JsonProcessingException {
 
         TransactionManager tm = AppConfig.singleton().getTransactionManager();
         UsersDao dao = new UsersDaoImpl();
@@ -42,11 +39,10 @@ public class LoginService {
 
         // セッション情報にユーザ情報を格納
         ObjectMapper mapper = new ObjectMapper();
-
         // JavaBeansオブジェクトをJSON文字列へ変換
         String jsonSessionInfo = mapper.writeValueAsString(sessionInfoBean);
-        (new SessionManager()).storeSessionData(jsonSessionInfo);
 
-        return mapSessionInfo;
+        (new SessionManager()).storeSessionData(jsonSessionInfo);
+        return jsonSessionInfo;
     }
 }

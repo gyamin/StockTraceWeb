@@ -18,16 +18,16 @@ public class RedisOperator implements SessionDataOperation {
     }
 
     @Override
-    public boolean storeSessionData(String key, Map<String, String> value) {
-        this.jedis.hmset(key, value);
+    public boolean storeSessionData(String key, String value) {
+        this.jedis.mset(key, value);
         this.jedis.expire(key, redisConfig.getRedisExpire());
         return false;
     }
 
     @Override
-    public Map<String, String> getSessionData(String key) {
+    public String getSessionData(String key) {
         this.jedis.expire(key, redisConfig.getRedisExpire());
-        Map<String, String> sessionData = this.jedis.hgetAll(key);
+        String sessionData = this.jedis.get(key);
         return sessionData;
     }
 
