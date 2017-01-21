@@ -11,4 +11,4 @@ ADD redis.conf /etc/redis.conf
 EXPOSE 6379
 
 # コンテナ作成時実行コマンド
-CMD ["/usr/sbin/php-fpm", "-F"]
+CMD ["redis-server", "/etc/redis/redis.conf"]

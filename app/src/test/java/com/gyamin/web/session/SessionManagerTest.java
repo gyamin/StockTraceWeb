@@ -49,6 +49,6 @@ public class SessionManagerTest {
 
         // セッションデータ取得
         result = mvc.perform(get("/get_session").cookie(this.cookie)).andReturn();
-        assertThat(result.getResponse().getContentAsString(), is("{param1=12345}"));
+        assertThat(result.getResponse().getContentAsString(), is("{\"param1\":\"12345\"}"));
     }
 }
