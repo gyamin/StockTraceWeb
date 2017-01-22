@@ -95,7 +95,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 ```
 
 #### ローカルからの接続
-```bash
+```
 $ psql -h 127.0.0.1 -U admin stock_trace
 Password for user admin: 
 psql (9.4.1, server 9.4.10)
@@ -143,20 +143,23 @@ CONTAINER ID        IMAGE                      COMMAND                  CREATED 
 a19c5ab894f8        debian:stockWeb-postgres   "/usr/lib/postgresql/"   About a minute ago   Exited (0) About a minute ago                       stockWeb-postgres
 ```
 
-#### composeの開始
+#### composeが管理するコンテナ起動
 ```bash
 $ docker-compose start
+Starting redis ... done
 Starting postgres ... done
 
 $ docker ps
+$ docker ps
 CONTAINER ID        IMAGE                      COMMAND                  CREATED             STATUS              PORTS                    NAMES
-a19c5ab894f8        debian:stockWeb-postgres   "/usr/lib/postgresql/"   2 minutes ago       Up 38 seconds       0.0.0.0:5432->5432/tcp   stockWeb-postgres
+6eed6353a7ae        redis                      "docker-entrypoint..."   10 hours ago        Up About a minute   0.0.0.0:6379->6379/tcp   stockWeb-redis
+4abb718eccd2        debian:stockWeb-postgres   "/usr/lib/postgres..."   10 hours ago        Up About a minute   0.0.0.0:5432->5432/tcp   stockWeb-postgres
 
 $ docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-debian              stockWeb-postgres   1883e7406956        3 minutes ago       323.8 MB
+debian              stockWeb-postgres   03d9e365a76d        10 hours ago        324 MB
+redis               latest              45c3ea2cecac        4 days ago          183 MB
 ```
-
 
 
 # Docker利用のサンプル
@@ -198,7 +201,7 @@ $ docker commit -m 'Install PostgreSQL' 4037fd2379c8 debian:postgres
 sha256:614b725fab2c724b2a2e92ad9f3a7a3e0bed61a0335436f006c81fa67765707b
 ```
 imageを確認すると、保存したイメージが作成されている。
-```bash
+```
 $ docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 debian              postgres            614b725fab2c        16 hours ago        300.1 MB
@@ -206,7 +209,7 @@ redis               latest              45c3ea2cecac        3 days ago          
 debian              latest              e5599115b6a6        4 days ago          123 MB
 ```
 保存したイメージdebian:postgres を指定してコンテナを起動。ちゃんとPostgreSQLがインストールされたままとなっている。
-```bash
+```
 $ docker run -it debian:postgres /bin/bash
 root@87cb15b6bc53:/# 
 root@87cb15b6bc53:/# ls -l /var/lib/postgresql/9.4/main/

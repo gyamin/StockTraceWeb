@@ -1,17 +1,17 @@
-package com.gyamin.stocktrace.service;
-
-import com.gyamin.stocktrace.dao.StockPricesDaoImpl;
-import org.springframework.stereotype.Service;
-
-import com.gyamin.stocktrace.dao.StockPricesDao;
-
-import java.time.LocalDate;
-
-@Service
-public class StockSearch {
-
-    private final StockPricesDao dao = new StockPricesDaoImpl();
-
+//package com.gyamin.stocktrace.service;
+//
+//import com.gyamin.stocktrace.dao.StockPricesDaoImpl;
+//import org.springframework.stereotype.Service;
+//
+//import com.gyamin.stocktrace.dao.StockPricesDao;
+//
+//import java.time.LocalDate;
+//
+//@Service
+//public class StockSearch {
+//
+//    private final StockPricesDao dao = new StockPricesDaoImpl();
+//
 //    public StockPrices selectByPrimaryKey() {
 //
 //        // データベース設定を取得
@@ -24,4 +24,4 @@ public class StockSearch {
 //
 //        return stockPrices;
 //    }
-}
+//}

@@ -1,6 +1,8 @@
 package com.gyamin.stocktrace;
 
 import javax.sql.DataSource;
+
+import com.gyamin.stocktrace.config.PostgreConfig;
 import org.seasar.doma.SingletonConfig;
 import org.seasar.doma.jdbc.Config;
 import org.seasar.doma.jdbc.dialect.Dialect;
@@ -8,6 +10,7 @@ import org.seasar.doma.jdbc.dialect.PostgresDialect;
 import org.seasar.doma.jdbc.tx.LocalTransactionDataSource;
 import org.seasar.doma.jdbc.tx.LocalTransactionManager;
 import org.seasar.doma.jdbc.tx.TransactionManager;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 @SingletonConfig
 public class AppConfig implements Config {
@@ -27,9 +30,12 @@ public class AppConfig implements Config {
             throw new RuntimeException(e);
         }
 
+        ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("jdbc-postgre.xml");
+        PostgreConfig postgreConfig = ctx.getBean(PostgreConfig.class);
+
         dialect = new PostgresDialect();
         dataSource = new LocalTransactionDataSource(
-                "jdbc:postgresql://10.211.55.8:5432/stock_trace", "developer", "developerPwd");
+                postgreConfig.getUrl(), postgreConfig.getUser(), postgreConfig.getPassword());
         transactionManager = new LocalTransactionManager(
                 dataSource.getLocalTransaction(getJdbcLogger()));
     }

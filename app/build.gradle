@@ -1,3 +1,5 @@
+apply plugin: 'java'
+
 configurations {
     domaGenRuntime
 }
@@ -12,10 +14,20 @@ dependencies {
     domaGenRuntime 'org.postgresql:postgresql:9.4.1208.jre7'
 }
 
+def loadProperties(filename) {
+    def props = new Properties()
+    file(filename).withInputStream {
+        props.load(it)
+    }
+    return props
+}
+
 task gen << {
+    def props = loadProperties("$rootDir/src/main/resources/jdbc-postgre.properties")
+
     ant.taskdef(resource: 'domagentask.properties',
             classpath: configurations.domaGenRuntime.asPath)
-    ant.gen(url: "jdbc:postgresql://10.211.55.8:5432/stock_trace", user: "developer", password: "developerPwd") {
+    ant.gen(url: "${props.url}", user: "${props.username}", password: "${props.password}") {
         entityConfig(packageName: 'com.gyamin.stocktrace.entity')
         daoConfig(packageName: 'com.gyamin.stocktrace.dao', configClassName: 'com.gyamin.stocktrace.AppConfig')
         sqlConfig()

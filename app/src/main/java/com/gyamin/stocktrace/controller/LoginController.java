@@ -37,10 +37,14 @@ public class LoginController {
      * ログイン画面表示
      * @return
      */
-    @RequestMapping(value = "/login", method = GET)
-    public String loginIndex() {
-        return "login/index";
-    }
+//    @RequestMapping(value = "/login", method = GET)
+//    public String loginIndex() {
+//        return "login/index";
+//    }
+//    *******************************************
+//    画面表示などの静的コンテンツは/dist/html/login/index.html のように
+//    /distディレクトリからリソースとして配信。サーバサイドはAPIのみを実装するSPA構成にする
+//    *******************************************
 
     /**
      * ログイン処理
